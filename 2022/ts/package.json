@@ -1,0 +1,19 @@
+{
+  "name": "2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:01": "nodemon src/01/program.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.11.10",
+    "nodemon": "^2.0.20",
+    "prettier": "2.8.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3"
+  }
+}
