@@ -4,13 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:01": "nodemon src/01/program.ts"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "start:01": "nodemon src/day01/program.ts",
+    "start:02": "nodemon src/day02/program.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-typescript": "^7.18.6",
+    "@jest/globals": "^29.3.1",
     "@types/node": "^18.11.10",
+    "babel-jest": "^29.3.1",
+    "jest": "^29.3.1",
     "nodemon": "^2.0.20",
     "prettier": "2.8.0",
     "ts-node": "^10.9.1",
