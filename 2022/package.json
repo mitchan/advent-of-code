@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch",
-    "start:01": "nodemon src/day01/program.ts",
-    "start:02": "nodemon src/day02/program.ts",
-    "start:03": "nodemon src/day03/program.ts"
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
