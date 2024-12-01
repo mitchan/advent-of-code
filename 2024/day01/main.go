@@ -1,33 +1,31 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
 	"math"
-	"os"
 	"sort"
 	"strconv"
 	"strings"
+
+	_ "embed"
 )
 
-func main() {
-	file, err := os.Open("input.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
+//go:embed input.txt
+var input string
 
-	scanner := bufio.NewScanner(file)
+func main() {
+	rows := strings.Split(input, "\n")
 
 	l1 := []int{}
 	l2 := []int{}
+	counters := make(map[int]int)
 
-	for scanner.Scan() {
-		s := strings.Fields(scanner.Text())
+	for _, row := range rows {
+		s := strings.Fields(row)
 
 		if len(s) != 2 {
-			log.Fatal("len is not 2")
+			continue
 		}
 
 		n1, err := strconv.ParseUint(s[0], 10, 64)
@@ -41,15 +39,23 @@ func main() {
 			log.Fatal(err)
 		}
 		l2 = append(l2, int(n2))
-	}
 
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
+		value, ok := counters[int(n2)]
+		if ok {
+			counters[int(n2)] = value + 1
+		} else {
+			counters[int(n2)] = 1
+		}
 	}
 
 	sort.Ints(l1)
 	sort.Ints(l2)
 
+	part1(l1, l2)
+	part2(l1, counters)
+}
+
+func part1(l1, l2 []int) {
 	sum := 0
 	for index, v1 := range l1 {
 		v2 := l2[index]
@@ -58,5 +64,17 @@ func main() {
 		sum += int(diff)
 	}
 
-	fmt.Println("The sum is: ", sum)
+	fmt.Println("part1 - The sum is: ", sum)
+}
+
+func part2(l1 []int, counters map[int]int) {
+	sum := 0
+	for _, v1 := range l1 {
+		value, ok := counters[v1]
+		if ok {
+			sum += v1 * value
+		}
+	}
+
+	fmt.Println("part2 - The sum is: ", sum)
 }
